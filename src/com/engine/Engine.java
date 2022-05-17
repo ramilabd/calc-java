@@ -7,8 +7,7 @@ import com.validate.Validate;
 
 public class Engine {
 
-
-    final String pattern_arabic = "\\s*\\d\\s*(\\+|\\-|\\*|\\/)\\s*\\d\\s*";
+    final String pattern_arabic = "\\s*(10|[0-9])\\s*(\\+|\\-|\\*|\\/)\\s*(10|[0-9])\\s*";
 
     public void start() {
         InputOutput io = new InputOutput();
