@@ -5,16 +5,26 @@ import java.util.regex.Matcher;
 
 public class Validate {
 
-    String pattern_arabic;
+    String patternArabic;
+    String patternRoman;
 
-    public Validate(String pattern){
-        this.pattern_arabic = pattern;
+    public Validate(String patternArabic, String patternRoman){
+        this.patternArabic = patternArabic;
+        this.patternRoman = patternRoman;
     }
 
-    public boolean isMatchesTemplate(String input) {
-        Pattern pattern = Pattern.compile(pattern_arabic);
-        Matcher matcher = pattern.matcher(input);
+    public boolean isMatchesTemplateArabic(String input) {
+        Pattern numArabic = Pattern.compile(patternArabic);
+        Matcher matcherArabic = numArabic.matcher(input);
 
-        return matcher.matches();
+        return matcherArabic.matches();
     }
+
+    public boolean isMatchesTemplateRoman(String input) {
+        Pattern numRoman = Pattern.compile(patternRoman);
+        Matcher matcherRoman = numRoman.matcher(input);
+
+        return matcherRoman.matches();
+    }
+
 }
