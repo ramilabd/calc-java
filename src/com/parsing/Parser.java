@@ -11,24 +11,21 @@ public class Parser {
 
     public Expression parse(String expression) {
 
-        char[] chars = expression.toCharArray();
-        ArrayList<Byte> numbers = new ArrayList<Byte>();
-
-        for (char character : chars){
-            if (Character.isDigit(character)) {
-                numbers.add((byte) Integer.parseInt(Character.toString(character)));
-            }
-            switch (character){
+        for (byte i = 0; i < expression.length(); i++) {
+            char character = expression.charAt(i);
+            switch (character) {
                 case '+':
                 case '-':
                 case '*':
                 case '/':
                     operator = character;
+                    break;
             }
-        }
 
-        firstOperand = numbers.get(0);
-        secondOperand = numbers.get(1);
+            String[] parts = expression.split("[\\+|\\-|\\*|\\/]");
+            firstOperand =  (byte) Integer.parseInt(parts[0].replaceAll("[^0-9]", ""));
+            secondOperand =  (byte) Integer.parseInt(parts[1].replaceAll("[^0-9]", ""));
+        }
 
         return new Expression(firstOperand, secondOperand, operator);
     }
