@@ -18,7 +18,7 @@ public class InputOutput {
         return expression;
     }
 
-    public void displayResult(int result) {
+    public void displayResult(String result) {
         System.out.println("Результат: " + result);
     }
 }
