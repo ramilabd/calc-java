@@ -9,7 +9,7 @@ public class Parser {
     char operator;
 
 
-    public Expression parse(String expression, String numberSystem) {
+    public Expression parse(String expression, String pattern) throws Exception {
         for (byte i = 0; i < expression.length(); i++) {
             char character = expression.charAt(i);
             switch (character) {
@@ -24,10 +24,10 @@ public class Parser {
 
         String[] parts = expression.split("[\\+|\\-|\\*|\\/]");
 
-        if (numberSystem.equals("arabic")) {
+        if (pattern.equals("PATTERN_ARABIC")) {
             firstOperand = (byte) Integer.parseInt(parts[0].replaceAll("[^0-9]", ""));
             secondOperand = (byte) Integer.parseInt(parts[1].replaceAll("[^0-9]", ""));
-        } else if (numberSystem.equals("roman")) {
+        } else if (pattern.equals("PATTERN_ROMAN")) {
             HashMap<String, Integer> numberRoman = new HashMap<String, Integer>();
             numberRoman.put("I", 1);
             numberRoman.put("II", 2);
@@ -41,12 +41,14 @@ public class Parser {
             numberRoman.put("X", 10);
 
             String key0 = parts[0].replaceAll("[^\b(I|II|III|IV|V|VI|VII|VIII|IX|X)\b]", "");
-            System.out.println("key1 " + key0);
             firstOperand = numberRoman.get(key0).byteValue();
 
             String key1 = parts[1].replaceAll("[^\b(I|II|III|IV|V|VI|VII|VIII|IX|X)\b]", "");
-            System.out.println("key1 " + key1);
             secondOperand = numberRoman.get(key1).byteValue();
+
+            if (firstOperand < secondOperand && operator == '-') {
+                throw new Exception("В римской системе нет отрицательных чисел");
+            }
         }
         return new Expression(firstOperand, secondOperand, operator);
     }
