@@ -4,21 +4,14 @@ import java.util.Scanner;
 
 public class InputOutput {
 
-    public String getExpression() {
-        Scanner in = new Scanner(System.in);
-        String expression;
-
+    public static String getExpression() {
         System.out.print("Ввод: ");
-        expression = in.nextLine();
 
-        if (expression.equals("q")) {
-            in.close();
-        }
-
-        return expression;
+        Scanner in = new Scanner(System.in);
+        return in.nextLine();
     }
 
-    public void displayResult(String result) {
+    public static void displayResult(String result) {
         System.out.println("Результат: " + result);
     }
 }

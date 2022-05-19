@@ -9,23 +9,24 @@ import com.validate.Validate;
 public class Engine {
 
     Expression cleared_expression;
-    InputOutput io = new InputOutput();
     Validate validate = new Validate();
     Parser parser = new Parser();
     Calculator calculator = new Calculator();
 
     public void start() throws Exception {
-        String expression = "";
+
+        String expression = InputOutput.getExpression();
 
         while (!expression.equals("q")) {
-            expression = io.getExpression();
-
             String pattern = validate.validator(expression);
-
             cleared_expression = parser.parse(expression, pattern);
             String result = calculator.calculate(cleared_expression, pattern);
+            InputOutput.displayResult(result);
 
-            io.displayResult(result);
+            expression = InputOutput.getExpression();
         }
+
+        System.out.println("Программа завершена.");
+        System.exit(0);
     }
 }
