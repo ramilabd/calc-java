@@ -1,3 +1,5 @@
+package com.greeting;
+
 public class Greeting {
 
     static String greeting = """
