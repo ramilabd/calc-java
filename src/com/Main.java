@@ -1,5 +1,8 @@
-import com.Greeting;
+package com;
+
 import com.engine.Engine;
+import com.greeting.Greeting;
+
 
 public class Main {
 
