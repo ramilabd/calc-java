@@ -4,7 +4,7 @@ import com.parsing.Expression;
 
 public class Calculator {
 
-    public String calculate(Expression expression, String pattern) {
+    public String calculate(Expression expression, String pattern) throws Exception {
         int result = 0;
 
         byte firstOperator = expression.getFirstOperand();
